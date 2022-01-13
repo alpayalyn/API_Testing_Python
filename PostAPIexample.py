@@ -8,7 +8,7 @@ import requests
 
 url = getConfig()['API']['endpoint'] + ApiResources.addBook
 headers = {"Content-Type": "application/json"}
-addBook_response = requests.post(url,json=addBookPayload("fefrewe"),headers=headers, )
+addBook_response = requests.post(url,json=addBookPayload("feasrewe"),headers=headers, )
 print(addBook_response.json())
 response_json = addBook_response.json()
 print(type(response_json))
@@ -28,9 +28,22 @@ res_json = response_deleteBook.json()
 print(res_json["msg"])
 assert res_json["msg"] == "book is successfully deleted"
 
-#Authentication
+# Authentication AND SESSION MANAGER ADJUSTMENTS
+# session has a capability, to reach request and authentitacion information. by just defined like below. So you can observe difference between two.
+
+sessionn = requests.session()
+sessionn.auth = auth=('rahulshettcademy',getPassword())
+
+# FIRST EXAMPLE #########################
+
 url = "https://api.github.com/user"
 github_response = requests.get(url,verify=False,auth=('rahulshettcademy',getPassword()))
 
+print(github_response.status_code)
+
+# SECOND EXAMPLE ######################## WITH SESSION
+
+url2 = "https://api.github.com/user/repos"
+response = sessionn.get(url2)
 print(github_response.status_code)
 
