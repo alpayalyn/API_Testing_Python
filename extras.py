@@ -67,6 +67,54 @@ print(dict_response[0]['isbn'])
 # ******* #
 json_response = response.json() # this way will provide you the LIST or DICT right away. 
 
+import requests
+from API_Test.utilities.configurations import *
+from API_Test.utilities.resources import *
+# ADDING
+# in the JSON we will add the payload.
+# Headers should be in DICT format!
+# configparser will help defining the URL of the endpoint. It fetches the API and endpoint datas from conf.py
+# payLoad will be helpful for our JSON data's we can not send the whole data located in the requests.post/get methods.
+
+url = getConfig()['API']['endpoint'] + ApiResources.addBook
+headers = {"Content-Type":"application/json"}
+addBook_Response = requests.post(url,json={
+
+"name":"Learn Appium Automation with Java",
+"isbn":"bclfd",
+"aisle":"2avl27",
+"author":"John foe"
+},headers=headers,)
+
+print(addBook_Response.json())
+response_json = addBook_Response.json()
+
+bookId = response_json['ID']
+# DELETING method will be the POST
+# We assigned bookId variable to "ID" because Inthe previous part of the code we created the BookId therefore
+# we want this bookId created above to be deleted.
+
+response_deleteBook = requests.post('http://216.10.245.166/Library/DeleteBook.php', json={
+
+"ID": bookId
+}, headers={"Content-Type": "application/json"},)
+
+assert response_deleteBook.status_code == 200
+
+res_Deleted_json = response_deleteBook.json()
+print(res_Deleted_json["msg"])
+
+assert res_Deleted_json == 'book is successfully deleted'
+
+#  **** AAUTHENTICATION
+# If you run into any certification faults by SSL add verify=False
+# httpbin.org good examples.
+
+url = "https://api.github.com/user"
+github_response = requests.get(url,verify=False,auth=('alpayalyn', 'rtyrtyrty'))
+
+print(github_response.status_code)
+
 
 
 
