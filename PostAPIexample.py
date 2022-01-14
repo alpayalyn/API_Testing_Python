@@ -8,7 +8,7 @@ import requests
 
 url = getConfig()['API']['endpoint'] + ApiResources.addBook
 headers = {"Content-Type": "application/json"}
-addBook_response = requests.post(url,json=addBookPayload("feasrewe"),headers=headers, )
+addBook_response = requests.post(url,json=addBookPayload("feasrewe", "123"),headers=headers, )
 print(addBook_response.json())
 response_json = addBook_response.json()
 print(type(response_json))
