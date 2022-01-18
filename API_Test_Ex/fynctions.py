@@ -12,6 +12,13 @@ def headers_function(term1, term2):
     }
     return body
 
+def cookies_function(cookie1, cookie2):
+    body = {
+        "cookie_1": cookie1,
+        "cookie_2": cookie2
+    }
+    return body
+
 def headers_content():
     headers = {
       "headers": {
