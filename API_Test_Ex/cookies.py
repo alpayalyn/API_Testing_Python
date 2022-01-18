@@ -6,12 +6,14 @@ import json
 from fynctions import *
 
 print(""" Test case:
-    - Endpoint is: https://postman-echo.com/get
+    - Endpoint is: https://postman-echo.com/cookies/set
     - Request will be sent by GET method.
-    - id1=1 parameter will be sent to the Endpoint.
-    - Response is expected as, "id1" : "1" under the "args" dict.
-    - Returned value will be " 1 "
-    - Status Code expected to be = 200
+    - You can change the content of cookies will be sent to the Endpoint.
+    - Those 2 Cookies will be added to cookies section of the Endpoint.
+    - Returned value will be whatever will be entered.
+    - Validation of those 2 Contents were sent successfully or not, is made inside of the for loop below.
+    - 2 content will be printed.
+    - 2 times Status Code expected to be written as = 200
 """)
 
 url = 'https://postman-echo.com/cookies/set'
