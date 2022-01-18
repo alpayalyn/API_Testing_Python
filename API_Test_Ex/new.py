@@ -7,8 +7,20 @@ from utilities.configurations import *
 import requests
 
 url = getConfig()['API']['endpoint'] + ApiResources.addBook
-headers = {"Content-Type": "application/json"}
-addBook_response = requests.post(url,json=addBookPayload("feasrewe", "123"),headers=headers)
+headers = {
+        "x-forwarded-proto": "https",
+        "x-forwarded-port": "443",
+        "host": "postman-echo.com",
+        "x-amzn-trace-id": "Root=1-61e58d54-496b170446fed91a6ceca1c0",
+        "content-length": "475",
+        "content-type": "application/json",
+        "user-agent": "PostmanRuntime/7.28.0",
+        "accept": "*/*",
+        "postman-token": "c4033666-b67f-4e60-9e8d-f47ab18319ff",
+        "accept-encoding": "gzip, deflate, br",
+        "cookie": "sails.sid=s%3Ah0yLtjnSBjfACW8LrPBj5-o-1qNc392x.9I4Gso8kjnZb%2BRkU%2FY5EKDy4KJAlNZ9I3Lt1FaMt4Ak"
+    }
+addBook_response = requests.post(url,json=addBookPayload("feasrewe", "123"),headers=headers, )
 print(addBook_response.json())
 response_json = addBook_response.json()
 print(type(response_json))
