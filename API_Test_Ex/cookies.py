@@ -35,3 +35,23 @@ for element in json_response['cookies']:
         assert json_response['cookies'][element] == cookie2
         assert response.status_code == 200, "Cookie couldn't be set properly"
         print(response.status_code)
+
+print("----------------------------------------------")
+print("COOKIE DELETE")
+
+print(""" Test case:
+    - Endpoint is: https://postman-echo.com/cookies/delete
+    - Request will be sent by GET method.
+    - All the cookies which were stored in the Cookie will be deleted in the end of this section.
+    - Status Code expected to be written as = 200
+""")
+
+url = 'https://postman-echo.com/cookies/delete'
+
+response = requests.get(url)
+json_response = response.json()
+
+print(json_response['cookies'])
+assert len(json_response['cookies']) == 0, "Cookies couldn't be deleted, properly."
+assert response.status_code == 200, "Cookies are deleted."
+print(response.status_code)
